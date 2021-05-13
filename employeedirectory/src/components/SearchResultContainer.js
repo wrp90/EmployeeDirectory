@@ -6,7 +6,7 @@ import API from "../utils/API";
 class SearchResultContainer extends Component {
     state = {
         search: "",
-        results: []
+        users: []
     };
 
     componentDidMount() {
@@ -14,17 +14,22 @@ class SearchResultContainer extends Component {
     }
 
     apiCall = query => {
-        API.search(query)
-            .then(res => console.log(res))
+        API.getEmployees()
+            .then(res => {
+                // console.log('!!!!!!!!!!!!!', res.data)
+                this.setState({ users: res.data.results})
+            })
             .catch(err => console.log(err));
     };
 
     handleInputChange = event => {
         const name = event.target.name;
         const value = event.target.value;
-        this.setState({
-            [name]: value
-        });
+        // for each user in the state
+        // map thru and find if their name contains value
+        // this.setState({
+        //     [name]: value
+        // });
     };
 
     handleFormSubmit = event => {
@@ -32,22 +37,21 @@ class SearchResultContainer extends Component {
         event.preventDefault();
 
         // Alert the user their first and last name, clear `this.state.firstName` and `this.state.lastName`, clearing the inputs
-        alert(`Hello ${this.state.firstName} ${this.state.lastName}`);
         this.setState({
             firstName: "",
             lastName: ""
         });
     };
 
+
     render() {
         return (
             <div>
                 <SearchForm
                     search={this.state.search}
-                    handleFormSubmit={this.handleFormSubmit}
                     handleInputChange={this.handleInputChange}
                 />
-                <ResultList results={this.state.results} />
+                <ResultList users={this.state.users} handleFormSubmit={this.handleFormSubmit}/>
             </div>
         );
     }
