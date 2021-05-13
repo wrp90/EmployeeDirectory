@@ -15,7 +15,7 @@ class SearchResultContainer extends Component {
 
     apiCall = query => {
         API.search(query)
-            .then(res => this.setState({ results: res.data.data }))
+            .then(res => console.log(res))
             .catch(err => console.log(err));
     };
 
@@ -30,12 +30,12 @@ class SearchResultContainer extends Component {
     handleFormSubmit = event => {
         // Preventing the default behavior of the form submit (which is to refresh the page)
         event.preventDefault();
-    
+
         // Alert the user their first and last name, clear `this.state.firstName` and `this.state.lastName`, clearing the inputs
         alert(`Hello ${this.state.firstName} ${this.state.lastName}`);
         this.setState({
-          firstName: "",
-          lastName: ""
+            firstName: "",
+            lastName: ""
         });
     };
 
