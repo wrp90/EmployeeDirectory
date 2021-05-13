@@ -11,12 +11,12 @@ function SearchForm(props) {
                     name="search"
                     type="text"
                     className="form-control"
-                    placeholder="Search for a Gif"
+                    placeholder="Search for a user"
                     id="search"
                 />
                 <button onClick={props.handleFormSubmit} className="btn btn-primary mt-3">
                     Search
-        </button>
+                </button>
             </div>
         </form>
     );
