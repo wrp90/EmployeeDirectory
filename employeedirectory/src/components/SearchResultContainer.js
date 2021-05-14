@@ -16,20 +16,22 @@ class SearchResultContainer extends Component {
     apiCall = query => {
         API.getEmployees()
             .then(res => {
-                // console.log('!!!!!!!!!!!!!', res.data)
                 this.setState({ users: res.data.results})
             })
             .catch(err => console.log(err));
     };
 
     handleInputChange = event => {
-        const name = event.target.name;
-        const value = event.target.value;
         // for each user in the state
         // map thru and find if their name contains value
-        // this.setState({
-        //     [name]: value
-        // });
+        const result = event.target.results;
+        const value = event.target.value;
+        const output = result.filter((response) => response.name.first.startsWith(`${value}`));
+        console.log(output)
+        this.setState({
+            search: value,
+            users: output
+        });
     };
 
     handleFormSubmit = event => {
