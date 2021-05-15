@@ -16,33 +16,26 @@ class SearchResultContainer extends Component {
     apiCall = query => {
         API.getEmployees()
             .then(res => {
-                this.setState({ users: res.data.results})
+                this.setState({ users: res.data.results })
             })
             .catch(err => console.log(err));
     };
 
     handleInputChange = event => {
-        // for each user in the state
-        // map thru and find if their name contains value
-        const result = event.target.results;
+        console.log('event1:', event)
         const value = event.target.value;
-        const output = result.filter((response) => response.name.first.startsWith(`${value}`));
-        console.log(output)
+        const results = this.state.users
+
+        const newUser = results.filter((result) => result.name.first.startsWith(`${value}`));
+
         this.setState({
             search: value,
-            users: output
+            users: newUser
         });
     };
 
-    handleFormSubmit = event => {
-        // Preventing the default behavior of the form submit (which is to refresh the page)
-        event.preventDefault();
-
-        // Alert the user their first and last name, clear `this.state.firstName` and `this.state.lastName`, clearing the inputs
-        this.setState({
-            firstName: "",
-            lastName: ""
-        });
+    onClick = event => {
+        
     };
 
 
@@ -50,10 +43,11 @@ class SearchResultContainer extends Component {
         return (
             <div>
                 <SearchForm
-                    search={this.state.search}
+                    name="search"
+                    value={this.state.users}
                     handleInputChange={this.handleInputChange}
                 />
-                <ResultList users={this.state.users} handleFormSubmit={this.handleFormSubmit}/>
+                <ResultList users={this.state.users} onClick={this.onClick} />
             </div>
         );
     }

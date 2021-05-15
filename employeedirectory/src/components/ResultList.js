@@ -4,6 +4,15 @@ function ResultList(props) {
     return (
         <div>
             <table>
+                <thead>
+                    <tr>
+                        <th scope="col">Image</th>
+                        <th scope="col" onClick={props.handleInputChange}>Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Phone</th>
+                        <th scope="col">DOB</th>
+                    </tr>
+                </thead>
                 <tbody>
 
                     {props.users.map(user => (
