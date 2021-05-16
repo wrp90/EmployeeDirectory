@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
-import SearchResultContainer from './components/SearchResultContainer'
+import SearchResultContainer from './components/SearchResultContainer';
+
 
 function App() {
   return (

@@ -10,11 +10,11 @@ class SearchResultContainer extends Component {
     };
 
     componentDidMount() {
-        this.apiCall();
+        this.apiCall(20);
     }
 
-    apiCall = query => {
-        API.getEmployees()
+    apiCall = (query) => {
+        API.getEmployees(query)
             .then(res => {
                 this.setState({ users: res.data.results })
             })
@@ -34,8 +34,18 @@ class SearchResultContainer extends Component {
         });
     };
 
-    onClick = event => {
-        
+    handleFormSubmit = event => {
+        // Preventing the default behavior of the form submit (which is to refresh the page)
+        console.log('event2: ', event)
+        event.preventDefault();
+
+
+        const results = this.state.users;
+        const newSort = results.sort((userA, userB) => userA.name.first.localeCompare(userB.name.first));
+
+        this.setState({
+            users: newSort
+        });
     };
 
 
@@ -47,7 +57,7 @@ class SearchResultContainer extends Component {
                     value={this.state.users}
                     handleInputChange={this.handleInputChange}
                 />
-                <ResultList users={this.state.users} onClick={this.onClick} />
+                <ResultList users={this.state.users} handleFormSubmit={this.handleFormSubmit} />
             </div>
         );
     }

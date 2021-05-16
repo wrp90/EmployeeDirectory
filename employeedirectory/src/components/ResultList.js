@@ -7,10 +7,10 @@ function ResultList(props) {
                 <thead>
                     <tr>
                         <th scope="col">Image</th>
-                        <th scope="col" onClick={props.handleInputChange}>Name</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Phone</th>
-                        <th scope="col">DOB</th>
+                        <th scope="col" onClick={props.handleFormSubmit}>Name</th>
+                        <th scope="col" onClick={props.handleFormSubmit}>Email</th>
+                        <th scope="col" onClick={props.handleFormSubmit}>Phone</th>
+                        <th scope="col" onClick={props.handleFormSubmit}>DOB</th>
                     </tr>
                 </thead>
                 <tbody>
