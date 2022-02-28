@@ -1,4 +1,5 @@
 import './App.css';
+import Login from './components/Login';
 import SearchResultContainer from './components/SearchResultContainer';
 import Dashboard from './components/Dashboard';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
